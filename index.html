@@ -10,7 +10,7 @@
 
     <meta
         name="description"
-        content="Blanchester Community Movie Night — a free evening of food, games, popcorn, and Paddington 2 under the stars on August 14, 2026."
+        content="Blanchester Community Movie Night — a free evening of food, games, popcorn, and Paddington 2 under the stars."
     >
 
     <title>Blanchester Community Movie Night</title>
@@ -26,6 +26,7 @@
             --white: #ffffff;
             --text: #2f3135;
             --muted: #656b73;
+            --green: #377c58;
             --shadow: 0 10px 30px rgba(23, 38, 59, 0.14);
         }
 
@@ -45,14 +46,6 @@
             line-height: 1.6;
         }
 
-        img {
-            max-width: 100%;
-        }
-
-        a {
-            color: inherit;
-        }
-
         .hero {
             min-height: 620px;
             padding: 30px 20px;
@@ -64,8 +57,8 @@
 
             background:
                 linear-gradient(
-                    rgba(10, 20, 35, 0.45),
-                    rgba(10, 20, 35, 0.76)
+                    rgba(10, 20, 35, 0.38),
+                    rgba(10, 20, 35, 0.78)
                 ),
                 url("banner.jpg") center center / cover no-repeat;
         }
@@ -79,9 +72,9 @@
             display: inline-block;
             margin-bottom: 16px;
             padding: 8px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255,255,255,0.7);
             border-radius: 999px;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0,0,0,0.25);
             font-size: 15px;
             font-weight: bold;
             letter-spacing: 0.08em;
@@ -92,7 +85,7 @@
             margin: 0;
             font-size: clamp(42px, 8vw, 78px);
             line-height: 1.02;
-            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.45);
+            text-shadow: 0 3px 15px rgba(0,0,0,0.5);
         }
 
         .hero-subtitle {
@@ -128,23 +121,25 @@
             color: var(--white);
             text-decoration: none;
             font-weight: bold;
-            transition:
-                transform 0.2s ease,
-                background 0.2s ease;
+            border: none;
         }
 
         .button:hover {
-            transform: translateY(-2px);
             background: var(--orange-dark);
         }
 
         .button.secondary {
-            border: 1px solid rgba(255, 255, 255, 0.75);
-            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.75);
+            background: rgba(0,0,0,0.3);
         }
 
         .button.secondary:hover {
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0,0,0,0.55);
+        }
+
+        .button.disabled {
+            background: #777777;
+            cursor: not-allowed;
         }
 
         .nav {
@@ -153,7 +148,7 @@
             z-index: 20;
             padding: 10px 16px;
             background: var(--navy);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.18);
         }
 
         .nav-inner {
@@ -270,18 +265,13 @@
 
         .movie-card {
             display: grid;
-            grid-template-columns: 180px 1fr;
+            grid-template-columns: 190px 1fr;
             gap: 28px;
             align-items: center;
             padding: 28px;
             border: 3px dashed var(--gold);
             border-radius: 18px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #fff8e9,
-                    #fff1d1
-                );
+            background: linear-gradient(135deg, #fff8e9, #fff1d1);
         }
 
         .movie-ticket {
@@ -326,12 +316,14 @@
             font-size: 19px;
         }
 
-        .bring-list {
+        .bring-list,
+        .support-list {
             columns: 2;
             padding-left: 22px;
         }
 
-        .bring-list li {
+        .bring-list li,
+        .support-list li {
             margin-bottom: 10px;
             break-inside: avoid;
         }
@@ -354,6 +346,21 @@
             margin: 0;
             padding: 0 18px 18px;
             color: var(--muted);
+        }
+
+        .support-section {
+            border-top: 8px solid var(--green);
+        }
+
+        .support-box {
+            padding: 26px;
+            border-radius: 16px;
+            background: #eef8f1;
+        }
+
+        .support-box h3 {
+            margin-top: 0;
+            color: var(--green);
         }
 
         .location-box {
@@ -418,7 +425,8 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .bring-list {
+            .bring-list,
+            .support-list {
                 columns: 1;
             }
 
@@ -479,6 +487,7 @@
             <a href="#activities">Food & Fun</a>
             <a href="#bring">What to Bring</a>
             <a href="#faq">FAQ</a>
+            <a href="#support">Support</a>
             <a href="#location">Directions</a>
         </div>
     </nav>
@@ -492,11 +501,7 @@
                 Mark your calendar and get ready for a fun summer evening with the community.
             </p>
 
-            <div
-                class="countdown"
-                id="countdown"
-                aria-label="Countdown to Blanchester Community Movie Night"
-            >
+            <div class="countdown" aria-label="Countdown to movie night">
                 <div class="countdown-box">
                     <span class="countdown-number" id="days">--</span>
                     <span class="countdown-label">Days</span>
@@ -619,8 +624,9 @@
             <h2>👨‍👩‍👧‍👦 Everyone Is Welcome</h2>
 
             <div class="welcome-callout">
-                This event is open to families, friends, neighbors, and visitors from Blanchester and surrounding communities.
-                Bring the people you care about and enjoy a relaxing summer evening together.
+                This event is open to families, friends, neighbors, and visitors from Blanchester
+                and surrounding communities. Bring the people you care about and enjoy a relaxing
+                summer evening together.
             </div>
         </section>
 
@@ -668,7 +674,7 @@
             <details>
                 <summary>What time does the movie begin?</summary>
                 <p>
-                    Food and activities begin at 7:00 PM. The movie will begin at dusk, once it is dark enough to see the screen clearly.
+                    Food and activities begin at 7:00 PM. The movie begins at dusk, once it is dark enough to see the screen clearly.
                 </p>
             </details>
 
@@ -692,6 +698,47 @@
                     No. Please bring lawn chairs or blankets for your group.
                 </p>
             </details>
+        </section>
+
+        <section class="section support-section" id="support">
+            <h2>❤️ Support Community Events</h2>
+
+            <p class="section-intro">
+                Blanchester Community Events is focused on creating free, family-friendly activities
+                that bring neighbors together.
+            </p>
+
+            <div class="support-box">
+                <h3>Help Keep Community Events Free</h3>
+
+                <p>
+                    If you would like to contribute to this event or help support future community events,
+                    donation options will be available soon.
+                </p>
+
+                <p>
+                    Optional contributions may help provide:
+                </p>
+
+                <ul class="support-list">
+                    <li>Food and drinks</li>
+                    <li>Fresh popcorn</li>
+                    <li>Children’s activities</li>
+                    <li>Event supplies</li>
+                    <li>Future movie nights</li>
+                    <li>Other free community gatherings</li>
+                </ul>
+
+                <p>
+                    <strong>
+                        Donations are always optional. Everyone is welcome to attend whether or not they contribute.
+                    </strong>
+                </p>
+
+                <span class="button disabled" aria-disabled="true">
+                    Donation Options Coming Soon
+                </span>
+            </div>
         </section>
 
         <section class="section" id="location">
